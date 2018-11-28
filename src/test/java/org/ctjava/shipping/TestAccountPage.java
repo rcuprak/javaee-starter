@@ -1,6 +1,4 @@
 /**
- * Copyright 2018 Connecticut Java User Group
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,39 +11,34 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ctjava;
+package org.ctjava.shipping;
 
+import org.ctjava.shipping.account.AccountPage;
 import javax.inject.Inject;
-import org.ctjava.starter.StarterBean;
-import org.jboss.arquillian.container.test.api.Deployment;
-import org.junit.runner.RunWith;
 import org.jboss.arquillian.junit.Arquillian;
-import org.jboss.shrinkwrap.api.ShrinkWrap;
-import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.Assert;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
- * Simple 
+ * Tests the account manager
  * @author Ryan Cuprak
  */
 @RunWith(Arquillian.class)
-public class StarterTest {
+public class TestAccountPage extends BaseTest {
     
     @Inject
-    private StarterBean starterBean;
+    private AccountPage accountPage;
     
-    @Deployment
-    public static WebArchive createDeployment() {
-        WebArchive war = ShrinkWrap.create(WebArchive.class)
-            .addClass(StarterBean.class)
-            .addAsWebInfResource("beans.xml");
-        return war;
-    }
+    @Inject
+    private StartupBean sb;
     
+    /**
+     * Tests the account manager
+     */
     @Test
-    public void testStarterBean() {
-        Assert.assertEquals("Hello!",starterBean.sayHello());
-    }
-    
+    public void testAccountManager() {
+        Assert.assertNotNull(accountPage);
+        Assert.assertEquals("There should be one account in the system.",1,accountPage.getAccounts().size());
+    }    
 }

@@ -1,6 +1,4 @@
 /**
- * Copyright 2018 Connecticut Java User Group
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,16 +11,13 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ctjava.starter;
+package org.ctjava.shipping;
 
 /**
- * Simple Starter Bean
- * @author rcuprak
+ * Credit Card Verifier Service
+ * @author Ryan Cuprak
  */
-public class StarterBean {
-   
-    public String sayHello() {
-        return "Hello!";
-    }
+public interface CreditCardVerifier {
     
+    boolean isCreditCardNumberValid(String cardNumber);
 }
