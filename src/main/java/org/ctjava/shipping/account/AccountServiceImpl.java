@@ -1,6 +1,4 @@
 /**
- * Copyright 2018 Connecticut Java User Group
- *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
  * You may obtain a copy of the License at
@@ -13,16 +11,31 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package org.ctjava.starter;
+package org.ctjava.shipping.account;
+
+import java.util.List;
+import javax.ejb.Stateless;
+import javax.inject.Inject;
+import org.ctjava.shipping.dao.AccountDao;
 
 /**
- * Simple Starter Bean
- * @author rcuprak
+ * Account Service Impl
+ * @author Ryan Cuprak
  */
-public class StarterBean {
-   
-    public String sayHello() {
-        return "Hello!";
+@Stateless
+public class AccountServiceImpl implements AccountService {
+    
+    @Inject
+    private AccountDao accountDao;
+        
+    @Override
+    public String addAccount(Account account) {
+        accountDao.saveAccount(account);
+        return "accounts";
     }
     
+    @Override
+    public List<Account> getAccounts() {
+        return accountDao.getAccounts();
+    }
 }
