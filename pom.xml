@@ -5,7 +5,7 @@
     <artifactId>starter</artifactId>
     <packaging>war</packaging>
     <version>1.0-SNAPSHOT</version>
-    <name>starter</name>
+    <name>Java2Days CDI Starter</name>
     <url>http://maven.apache.org</url>
     <properties> 
         <version.org.jboss.arquillian>1.4.0.Final</version.org.jboss.arquillian> 
