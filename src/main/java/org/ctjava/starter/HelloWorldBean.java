@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Connecticut Java User Group
+ * Copyright 2020 Connecticut Java User Group
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -15,14 +15,18 @@
  */
 package org.ctjava.starter;
 
+import javax.enterprise.inject.Model;
+
+
 /**
  * Simple Starter Bean
- * @author rcuprak
+ * @author Ryan Cuprak
  */
-public class StarterBean {
+@Model
+public class HelloWorldBean {
    
-    public String sayHello() {
-        return "Hello!";
+    public String getMessage() {
+        return "Hello from a bean!";
     }
     
 }

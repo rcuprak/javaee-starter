@@ -1,5 +1,5 @@
 /**
- * Copyright 2018 Connecticut Java User Group
+ * Copyright 2020 Connecticut Java User Group
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -16,7 +16,7 @@
 package org.ctjava;
 
 import javax.inject.Inject;
-import org.ctjava.starter.StarterBean;
+import org.ctjava.starter.HelloWorldBean;
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.junit.runner.RunWith;
 import org.jboss.arquillian.junit.Arquillian;
@@ -26,26 +26,35 @@ import org.junit.Assert;
 import org.junit.Test;
 
 /**
- * Simple 
+ * Simple integration test. This test starts-up a Payara container, deploys the application, and runs a test (within the container)
  * @author Ryan Cuprak
  */
 @RunWith(Arquillian.class)
-public class StarterTest {
-    
+public class HelloWorldBeanTest {
+
+    /**
+     * Injects the starter bean
+     */
     @Inject
-    private StarterBean starterBean;
-    
+    private HelloWorldBean starterBean;
+
+    /**
+     * Creates the test archive
+     * @return web archive for testing
+     */
     @Deployment
     public static WebArchive createDeployment() {
-        WebArchive war = ShrinkWrap.create(WebArchive.class)
-            .addClass(StarterBean.class)
+        return ShrinkWrap.create(WebArchive.class)
+            .addPackage("org.ctjava.starter")
             .addAsWebInfResource("beans.xml");
-        return war;
     }
-    
+
+    /**
+     * Simple test, this runs in the container
+     */
     @Test
     public void testStarterBean() {
-        Assert.assertEquals("Hello!",starterBean.sayHello());
+        Assert.assertEquals("Hello from a bean!",starterBean.getMessage());
     }
     
 }
